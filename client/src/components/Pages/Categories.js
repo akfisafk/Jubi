@@ -113,7 +113,7 @@ export const Categories = () => {
 
     useEffect(() => {
         async function getHorror() {
-            const response = await fetch('/apis/horror', {
+            const response = await fetch('https://akfisafk-jubi-backend.zeet.app/apis/horror', {
                 method: "GET",
                 headers: {
                     'Accept': 'application/json',
