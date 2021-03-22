@@ -72,7 +72,7 @@ export const Categories = () => {
 
     useEffect(() => {
         async function getPopular() {
-            const response = await fetch('./apis/popular', {
+            const response = await fetch('/apis/popular', {
                 method: "GET",
                 headers: {
                     'Accept': 'application/json',
@@ -99,11 +99,13 @@ export const Categories = () => {
                 },
             })
                 .then((result) => result.json())
-            const json = response.json();
+            console.log(response);
+            const json = await response.json();
 
+            
             // Handle dispatch
             dispatchTop(
-                { type: 'add-category', payload: { categories: json } }
+                { type: 'add-category', payload: { categories: await json } }
             );
         }
         getTopRated();
