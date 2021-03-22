@@ -100,12 +100,12 @@ export const Categories = () => {
             })
                 .then((result) => result.json())
             console.log(response);
-            const json = await response.json();
+            // const json = await response.json();
 
             
             // Handle dispatch
             dispatchTop(
-                { type: 'add-category', payload: { categories: await json } }
+                { type: 'add-category', payload: { categories: await response } }
             );
         }
         getTopRated();
@@ -120,13 +120,14 @@ export const Categories = () => {
                     'Content-type': 'application/json'
                 },
             })
+                .then((result) => result.json())
             console.log(response);
-            const json = await response.json();
-            console.log(json);
+            // const json = await response.json();
+            // console.log(json);
 
             // Handle dispatch
             dispatchHorrors(
-                { type: 'add-category', payload: { categories: json } }
+                { type: 'add-category', payload: { categories: response } }
             );
         }
         getHorror();
