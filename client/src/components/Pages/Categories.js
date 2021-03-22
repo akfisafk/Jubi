@@ -36,6 +36,7 @@ export const Categories = () => {
             const response = await fetch(`/users/${user.result._id}/favorites`, {
                 method: "GET",
                 headers: {
+                    'Accept': 'application/json',
                     'Content-type': 'application/json'
                 }
             })
@@ -47,33 +48,34 @@ export const Categories = () => {
         getFavorites();
     }, [user.result._id]);
 
-    useEffect(() => {
-        async function getRecommendations() {
-        if (toRecommend)
-            {
-                const response = await fetch('/apis/recommended', {
-                    method: "POST",
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-type': 'application/json'
-                    },
-                    body: JSON.stringify({ recommend_id: toRecommend.movie_id })
-                })
-                    .then((result) => result.json())
+    // useEffect(() => {
+    //     async function getRecommendations() {
+    //     if (toRecommend)
+    //         {
+    //             const response = await fetch('/apis/recommended', {
+    //                 method: "POST",
+    //                 headers: {
+    //                     'Accept': 'application/json',
+    //                     'Content-type': 'application/json'
+    //                 },
+    //                 body: JSON.stringify({ recommend_id: toRecommend.movie_id })
+    //             })
+    //                 .then((result) => result.json())
 
-                dispatchRec(
-                    { type: 'add-category', payload: { categories: await response } }
-                );
-            }
-        }
-        getRecommendations();
-    }, [toRecommend])
+    //             dispatchRec(
+    //                 { type: 'add-category', payload: { categories: await response } }
+    //             );
+    //         }
+    //     }
+    //     getRecommendations();
+    // }, [toRecommend])
 
     useEffect(() => {
         async function getPopular() {
             const response = await fetch('/apis/popular', {
                 method: "GET",
                 headers: {
+                    'Accept': 'application/json',
                     'Content-type': 'application/json'
                 },
             })
@@ -92,6 +94,7 @@ export const Categories = () => {
             const response = await fetch('/apis/toprated', {
                 method: "GET",
                 headers: {
+                    'Accept': 'application/json',
                     'Content-type': 'application/json'
                 },
             })
@@ -110,6 +113,7 @@ export const Categories = () => {
             const response = await fetch('/apis/horror', {
                 method: "GET",
                 headers: {
+                    'Accept': 'application/json',
                     'Content-type': 'application/json'
                 },
             })
@@ -128,6 +132,7 @@ export const Categories = () => {
             const response = await fetch('/apis/nowplaying', {
                 method: "GET",
                 headers: {
+                    'Accept': 'application/json',
                     'Content-type': 'application/json'
                 },
             })
@@ -146,9 +151,9 @@ export const Categories = () => {
             {populars.map(movie => {
                 return <Popular key={movie.id} movie={movie} dispatch={dispatchPopular} />
             })}
-            {recommendeds.map(movie => {
+            {/* {recommendeds.map(movie => {
                 return <Recommended key={movie.id} movie={movie} dispatch={dispatchRec} rec={toRecommend.original_title}/>
-            })}
+            })} */}
             {nowplayings.map(movie => {
                 return <Category key={movie.id} movie={movie} dispatch={dispatchNow} category="New Arrivals"/>
             })}

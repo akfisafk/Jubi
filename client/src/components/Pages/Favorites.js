@@ -29,6 +29,7 @@ export const Favorites = () => {
             const response = await fetch(`/users/${user.result._id}/favorites`, {
                 method: "GET",
                 headers: {
+                    'Accept': 'application/json',
                     'Content-type': 'application/json'
                 },
                 // body: JSON.stringify(message)
