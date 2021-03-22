@@ -26,13 +26,12 @@ export const Favorites = () => {
 
     useEffect(() => {
         async function getFavorites() {
-            const response = await fetch(`/users/${user.result._id}/favorites`, {
+            const response = await fetch(`https://akfisafk-jubi-backend.zeet.app/users/${user.result._id}/favorites`, {
                 method: "GET",
                 headers: {
                     'Accept': 'application/json',
                     'Content-type': 'application/json'
                 },
-                // body: JSON.stringify(message)
             })
                 .then((result) => result.json())
             console.log(response)

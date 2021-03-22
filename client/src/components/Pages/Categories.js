@@ -31,48 +31,48 @@ export const Categories = () => {
         setUser(JSON.parse(localStorage.getItem('profile')));
     }, [location]);
 
-    // useEffect(() => {
-    //     async function getFavorites() {
-    //         const response = await fetch(`/users/${user.result._id}/favorites`, {
-    //             method: "GET",
-    //             headers: {
-    //                 'Accept': 'application/json',
-    //                 'Content-type': 'application/json'
-    //             }
-    //         })
-    //             .then((result) => result.json())
-    //         const randomNum = Math.floor(Math.random() * response.length);
-    //         setToRecommend(response[randomNum]);
+    useEffect(() => {
+        async function getFavorites() {
+            const response = await fetch(`https://akfisafk-jubi-backend.zeet.app/users/${user.result._id}/favorites`, {
+                method: "GET",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-type': 'application/json'
+                }
+            })
+                .then((result) => result.json())
+            const randomNum = Math.floor(Math.random() * response.length);
+            setToRecommend(response[randomNum]);
 
-    //     }
-    //     getFavorites();
-    // }, [user.result._id]);
+        }
+        getFavorites();
+    }, [user.result._id]);
 
-    // useEffect(() => {
-    //     async function getRecommendations() {
-    //     if (toRecommend)
-    //         {
-    //             const response = await fetch('/apis/recommended', {
-    //                 method: "POST",
-    //                 headers: {
-    //                     'Accept': 'application/json',
-    //                     'Content-type': 'application/json'
-    //                 },
-    //                 body: JSON.stringify({ recommend_id: toRecommend.movie_id })
-    //             })
-    //                 .then((result) => result.json())
+    useEffect(() => {
+        async function getRecommendations() {
+        if (toRecommend)
+            {
+            const response = await fetch('https://akfisafk-jubi-backend.zeet.app/apis/recommended', {
+                    method: "POST",
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-type': 'application/json'
+                    },
+                    body: JSON.stringify({ recommend_id: toRecommend.movie_id })
+                })
+                    .then((result) => result.json())
 
-    //             dispatchRec(
-    //                 { type: 'add-category', payload: { categories: await response } }
-    //             );
-    //         }
-    //     }
-    //     getRecommendations();
-    // }, [toRecommend])
+                dispatchRec(
+                    { type: 'add-category', payload: { categories: await response } }
+                );
+            }
+        }
+        getRecommendations();
+    }, [toRecommend])
 
     useEffect(() => {
         async function getPopular() {
-            const response = await fetch('/apis/popular', {
+            const response = await fetch('https://akfisafk-jubi-backend.zeet.app/apis/popular', {
                 method: "GET",
                 headers: {
                     'Accept': 'application/json',
@@ -91,7 +91,7 @@ export const Categories = () => {
     
     useEffect(() => {
         async function getTopRated() {
-            const response = await fetch('/apis/toprated', {
+            const response = await fetch('https://akfisafk-jubi-backend.zeet.app/apis/toprated', {
                 method: "GET",
                 headers: {
                     'Accept': 'application/json',
@@ -99,10 +99,7 @@ export const Categories = () => {
                 },
             })
                 .then((result) => result.json())
-            console.log(response);
-            // const json = await response.json();
 
-            
             // Handle dispatch
             dispatchTop(
                 { type: 'add-category', payload: { categories: await response } }
@@ -121,9 +118,6 @@ export const Categories = () => {
                 },
             })
                 .then((result) => result.json())
-            console.log(response);
-            // const json = await response.json();
-            // console.log(json);
 
             // Handle dispatch
             dispatchHorrors(
@@ -133,33 +127,33 @@ export const Categories = () => {
         getHorror();
     }, []);
 
-    // useEffect(() => {
-    //     async function getNow() {
-    //         const response = await fetch('/apis/nowplaying', {
-    //             method: "GET",
-    //             headers: {
-    //                 'Accept': 'application/json',
-    //                 'Content-type': 'application/json'
-    //             },
-    //         })
-    //             .then((result) => result.json())
+    useEffect(() => {
+        async function getNow() {
+            const response = await fetch('https://akfisafk-jubi-backend.zeet.app/apis/nowplaying', {
+                method: "GET",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-type': 'application/json'
+                },
+            })
+                .then((result) => result.json())
 
-    //         // Handle dispatch
-    //         dispatchNow(
-    //             { type: 'add-category', payload: { categories: response } }
-    //         );
-    //     }
-    //     getNow()
-    // }, [])
+            // Handle dispatch
+            dispatchNow(
+                { type: 'add-category', payload: { categories: response } }
+            );
+        }
+        getNow()
+    }, [])
 
     return (
         <>
             {populars.map(movie => {
                 return <Popular key={movie.id} movie={movie} dispatch={dispatchPopular} />
             })}
-            {/* {recommendeds.map(movie => {
+            {recommendeds.map(movie => {
                 return <Recommended key={movie.id} movie={movie} dispatch={dispatchRec} rec={toRecommend.original_title}/>
-            })} */}
+            })}
             {nowplayings.map(movie => {
                 return <Category key={movie.id} movie={movie} dispatch={dispatchNow} category="New Arrivals"/>
             })}
