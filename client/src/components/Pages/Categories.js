@@ -31,22 +31,22 @@ export const Categories = () => {
         setUser(JSON.parse(localStorage.getItem('profile')));
     }, [location]);
 
-    useEffect(() => {
-        async function getFavorites() {
-            const response = await fetch(`/users/${user.result._id}/favorites`, {
-                method: "GET",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-type': 'application/json'
-                }
-            })
-                .then((result) => result.json())
-            const randomNum = Math.floor(Math.random() * response.length);
-            setToRecommend(response[randomNum]);
+    // useEffect(() => {
+    //     async function getFavorites() {
+    //         const response = await fetch(`/users/${user.result._id}/favorites`, {
+    //             method: "GET",
+    //             headers: {
+    //                 'Accept': 'application/json',
+    //                 'Content-type': 'application/json'
+    //             }
+    //         })
+    //             .then((result) => result.json())
+    //         const randomNum = Math.floor(Math.random() * response.length);
+    //         setToRecommend(response[randomNum]);
 
-        }
-        getFavorites();
-    }, [user.result._id]);
+    //     }
+    //     getFavorites();
+    // }, [user.result._id]);
 
     // useEffect(() => {
     //     async function getRecommendations() {
@@ -72,7 +72,7 @@ export const Categories = () => {
 
     useEffect(() => {
         async function getPopular() {
-            const response = await fetch('/apis/popular', {
+            const response = await fetch('./apis/popular', {
                 method: "GET",
                 headers: {
                     'Accept': 'application/json',
@@ -99,52 +99,53 @@ export const Categories = () => {
                 },
             })
                 .then((result) => result.json())
+            const json = response.json();
 
             // Handle dispatch
             dispatchTop(
-                { type: 'add-category', payload: { categories: response } }
+                { type: 'add-category', payload: { categories: json } }
             );
         }
         getTopRated();
     }, []);
 
-    useEffect(() => {
-        async function getHorror() {
-            const response = await fetch('/apis/horror', {
-                method: "GET",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-type': 'application/json'
-                },
-            })
-                .then((result) => result.json())
+    // useEffect(() => {
+    //     async function getHorror() {
+    //         const response = await fetch('/apis/horror', {
+    //             method: "GET",
+    //             headers: {
+    //                 'Accept': 'application/json',
+    //                 'Content-type': 'application/json'
+    //             },
+    //         })
+    //             .then((result) => result.json())
 
-            // Handle dispatch
-            dispatchHorrors(
-                { type: 'add-category', payload: { categories: response } }
-            );
-        }
-        getHorror();
-    }, []);
+    //         // Handle dispatch
+    //         dispatchHorrors(
+    //             { type: 'add-category', payload: { categories: response } }
+    //         );
+    //     }
+    //     getHorror();
+    // }, []);
 
-    useEffect(() => {
-        async function getNow() {
-            const response = await fetch('/apis/nowplaying', {
-                method: "GET",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-type': 'application/json'
-                },
-            })
-                .then((result) => result.json())
+    // useEffect(() => {
+    //     async function getNow() {
+    //         const response = await fetch('/apis/nowplaying', {
+    //             method: "GET",
+    //             headers: {
+    //                 'Accept': 'application/json',
+    //                 'Content-type': 'application/json'
+    //             },
+    //         })
+    //             .then((result) => result.json())
 
-            // Handle dispatch
-            dispatchNow(
-                { type: 'add-category', payload: { categories: response } }
-            );
-        }
-        getNow()
-    }, [])
+    //         // Handle dispatch
+    //         dispatchNow(
+    //             { type: 'add-category', payload: { categories: response } }
+    //         );
+    //     }
+    //     getNow()
+    // }, [])
 
     return (
         <>
