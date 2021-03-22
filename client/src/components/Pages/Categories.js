@@ -111,24 +111,26 @@ export const Categories = () => {
         getTopRated();
     }, []);
 
-    // useEffect(() => {
-    //     async function getHorror() {
-    //         const response = await fetch('/apis/horror', {
-    //             method: "GET",
-    //             headers: {
-    //                 'Accept': 'application/json',
-    //                 'Content-type': 'application/json'
-    //             },
-    //         })
-    //             .then((result) => result.json())
+    useEffect(() => {
+        async function getHorror() {
+            const response = await fetch('/apis/horror', {
+                method: "GET",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-type': 'application/json'
+                },
+            })
+            console.log(response);
+            const json = await response.json();
+            console.log(json);
 
-    //         // Handle dispatch
-    //         dispatchHorrors(
-    //             { type: 'add-category', payload: { categories: response } }
-    //         );
-    //     }
-    //     getHorror();
-    // }, []);
+            // Handle dispatch
+            dispatchHorrors(
+                { type: 'add-category', payload: { categories: json } }
+            );
+        }
+        getHorror();
+    }, []);
 
     // useEffect(() => {
     //     async function getNow() {
