@@ -148,20 +148,41 @@ export const Categories = () => {
 
     return (
         <>
+            {/* {user ? (
+            <>
+            {populars.map(movie => {
+                return <Popular key={movie.id} movie={movie} dispatch={dispatchPopular} />
+            })
+            }
+            {recommendeds.map(movie => {
+                return <Recommended key={movie.id} movie={movie} dispatch={dispatchRec} rec={toRecommend.original_title} />
+            })}
+            {nowplayings.map(movie => {
+                return <Category key={movie.id} movie={movie} dispatch={dispatchNow} category="New Arrivals" />
+            })}
+            {horrors.map(movie => {
+                return <Category key={movie.id} movie={movie} dispatch={dispatchHorrors} category="Horror" />
+            })}
+            {toprateds.map(movie => {
+                return <Category key={movie.id} movie={movie} dispatch={dispatchTop} category="Top Rated" />
+            })}
+            </>
+            ) : <h2>Must be logged in to access the movies</h2>} */}
+
             {populars.map(movie => {
                 return <Popular key={movie.id} movie={movie} dispatch={dispatchPopular} />
             })}
             {recommendeds.map(movie => {
-                return <Recommended key={movie.id} movie={movie} dispatch={dispatchRec} rec={toRecommend.original_title}/>
+                return <Recommended key={movie.id} movie={movie} dispatch={dispatchRec} rec={toRecommend.original_title} />
             })}
             {nowplayings.map(movie => {
-                return <Category key={movie.id} movie={movie} dispatch={dispatchNow} category="New Arrivals"/>
+                return <Category key={movie.id} movie={movie} dispatch={dispatchNow} category="New Arrivals" />
             })}
             {horrors.map(movie => {
-                return <Category key={movie.id} movie={movie} dispatch={dispatchHorrors} category="Horror"/>
+                return <Category key={movie.id} movie={movie} dispatch={dispatchHorrors} category="Horror" />
             })}
             {toprateds.map(movie => {
-                return <Category key={movie.id} movie={movie} dispatch={dispatchTop} category="Top Rated"/>
+                return <Category key={movie.id} movie={movie} dispatch={dispatchTop} category="Top Rated" />
             })}
         </>
     )

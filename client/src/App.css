@@ -480,7 +480,4 @@ input:checked + .slider:before {
     .mode-container {
         display: none;
     }
-    .logout {
-        display: none;
-    }
 }
