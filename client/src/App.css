@@ -481,3 +481,26 @@ input:checked + .slider:before {
         display: none;
     }
 }
+
+@media only screen and (max-width: 500px) {
+    .nav-list {
+        padding: 0;
+    }
+    body {
+        width: 100%;
+    }
+    div#root {
+        width: 100%;
+    }
+    .landing__text .jubi {
+        font-size: 120px;
+        margin: -220px 0 0 0;
+    }
+    .landing__text p {
+        font-size: 14px;
+        margin: -26px 0 0 80px;
+    }
+    .landing__login {
+        margin: -80px 0 0 0;
+    }
+}
