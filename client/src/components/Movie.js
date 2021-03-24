@@ -9,12 +9,13 @@ import Tag from './Tag';
 
 const STYLES = {
     TITLE: {
-        position: 'fixed',
-        left: '3%',
-        top: '39%',
+        position: 'absolute',
+        bottom: '3%',
+        left: '5%',
         margin: '0',
         fontSize: '34px',
-        color: 'white'
+        color: 'white',
+        background: 'transparent'
     },
     BUTTON: {
         width: '80px',
@@ -52,7 +53,17 @@ const STYLES = {
         display: 'block'
     },
     MODAL_IMG_GRADIENT: {
-        background: 'linear-gradient(0deg, #00000088 30%, #ffffff44 100%'
+        background: 'linear-gradient(0deg, #00000088 30%, #ffffff44 100%',
+        position: 'relative'
+    },
+    CLOSE: {
+        position: 'absolute',
+        top: '5%',
+        right: '3%',
+        color: 'white',
+        background: 'transparent',
+        border: 'none',
+        fontSize: '2rem'
     },
     CONTAINER: {
         padding: '10px 30px'
@@ -166,11 +177,12 @@ const Movie = ({ movie }) => {
             <Modal open={isOpen} onClose={() => setIsOpen(false)}>
                 <div style={STYLES.MODAL_IMG_GRADIENT}>
                     <img style={STYLES.MODAL_IMG} src={"https://image.tmdb.org/t/p/w500/" + movie.backdrop_path} alt="" />
+                    <h3 style={STYLES.TITLE}>
+                        {movie.original_title}
+                        <FavoriteButton handleFavorite={handleFavorite} />
+                    </h3>
+                    <button style={STYLES.CLOSE} onClick={() => setIsOpen(false)}>X</button>
                 </div>
-                <h3 style={STYLES.TITLE}>
-                    {movie.original_title}
-                    <FavoriteButton/>
-                </h3>
                 <div style={STYLES.CONTAINER}>
                     <h3 style={STYLES.RELEASE}>
                         {movie.release_date.slice(0, 4)}

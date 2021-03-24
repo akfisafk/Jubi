@@ -133,7 +133,7 @@ button:focus {
     justify-content: center;
     align-items: center;
     color: white;
-    margin: 0 30px;
+    margin: 0 20px;
     background-color: rgb(61, 112, 72);
     width: 40px;
     height: 40px;
@@ -157,7 +157,7 @@ button:focus {
     justify-content: center;
     position: absolute;
     top: 55%;
-    left: 20%;
+    left: -80%;
     background-color: rgb(246, 243, 243);
     z-index: 1000;
 }
@@ -185,6 +185,7 @@ button:focus {
 }
 
 .signup {
+    margin: 0 20px 0 0;
     display: flex;
     align-items: center;
     justify-content: center;
