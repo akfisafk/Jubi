@@ -103,6 +103,10 @@ button:focus {
     height: 70px;
 }
 
+.navbar__right .nav-list {
+    position: relative;
+}
+
 .nav-list {
     align-items: center;
     margin: 0;
@@ -157,7 +161,7 @@ button:focus {
     justify-content: center;
     position: absolute;
     top: 55%;
-    left: -80%;
+    left: -10%;
     background-color: rgb(246, 243, 243);
     z-index: 1000;
 }
@@ -503,5 +507,8 @@ input:checked + .slider:before {
     }
     .landing__login {
         margin: -80px 0 0 0;
+    }
+    .menu-display {
+        left: -60%;
     }
 }
