@@ -49,7 +49,8 @@ export const Home = () => {
         gsap.from('h1', { duration: 3, ease: 'power4.out', x: '-25%' })
         gsap.from('h1', { duration: 1.5, opacity: 0, ease: 'circ.out' })
         gsap.from('p', { duration: 1.5, opacity: 0, ease: 'power4.out', delay: 1 })
-        gsap.from('form', { duration: 1, opacity: 0, delay: 1.5})
+        gsap.from('form', { duration: 1, opacity: 0, delay: 1.5 })
+        gsap.from('.guest', { duration: 3, opacity: 0, delay: 3 })
     }, []);
 
     return (
@@ -68,8 +69,11 @@ export const Home = () => {
                                 className="fa fa-refresh fa-spin"
                             />}</span></button>
                         </form>
-                        <button onClick={handleGuestLogin}>Login as Guest</button>
                     </div>
+                </div>
+                <div className="guest">
+                    <p className="guest-label">Explore Jubi with limited features</p>
+                    <button className="guest-btn" onClick={handleGuestLogin}>View as Guest</button>
                 </div>
             </div>
         </div>

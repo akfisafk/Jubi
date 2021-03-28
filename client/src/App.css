@@ -50,6 +50,7 @@ button:focus {
 
 .landing__login {
     padding: 80px 0 0 110px;
+    position: relative;
 }
 
 .landing__login__form {
@@ -84,9 +85,42 @@ button:focus {
     border: none;
     width: 40px;
     height: 24px;
+    transition-duration: .3s;
+    transition-timing-function: ease;
 }
 
 .landing__login__form button:hover {
+    transition-duration: .3s;
+    transition-timing-function: ease;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+.guest {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 120px 0 0 0;
+}
+
+.guest-label {
+    color: white;
+    margin: 0 0 12px 0;
+}
+
+.guest-btn {
+    background-color: rgb(209, 121, 49);
+    border: 1px solid rgb(209, 121, 49);
+    color: white;
+    border: none;
+    width: 100px;
+    height: 24px;
+    transition-duration: .3s;
+    transition-timing-function: ease;
+}
+
+.guest-btn:hover {
     transition-duration: .3s;
     transition-timing-function: ease;
     background-color: transparent;
@@ -161,7 +195,7 @@ button:focus {
     justify-content: center;
     position: absolute;
     top: 55%;
-    left: -5%;
+    left: 1%;
     background-color: rgb(246, 243, 243);
     z-index: 1000;
 }
@@ -509,5 +543,8 @@ input:checked + .slider:before {
     }
     .menu-display {
         left: -60%;
+    }
+    .guest {
+        margin: 50px 0 0 0;
     }
 }

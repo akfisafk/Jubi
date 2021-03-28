@@ -26,33 +26,43 @@ export const Favorites = () => {
 
     useEffect(() => {
         async function getFavorites() {
-            const response = await fetch(`https://akfisafk-jubi-backend.zeet.app/users/${user.result._id}/favorites`, {
-                method: "GET",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-type': 'application/json'
-                },
-            })
-                .then((result) => result.json())
-            console.log(response)
+            if (user.result.account !== 'guest') {
+                const response = await fetch(`https://akfisafk-jubi-backend.zeet.app/users/${user.result._id}/favorites`, {
+                    method: "GET",
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-type': 'application/json'
+                    },
+                })
+                    .then((result) => result.json())
+                console.log(response)
 
-            // Handle dispatch
-            favoritesDispatch(
-                { type: 'add-favorite', payload: { favorites: await response } }
-            );
+                // Handle dispatch
+                favoritesDispatch(
+                    { type: 'add-favorite', payload: { favorites: await response } }
+                );
+            }
         }
         getFavorites();
-    }, [user.result._id]);
+    }, [user.result._id, user.result.account]);
 
     return (
-        <div className="container">
-            <h1 className="favorites-title">Favorite Movies</h1>
-            <div className="favorites-list">
-                {favorites.map(favorite => {
-                    return <Favorite key={favorite.id} favorite={favorite} dispatch={favoritesDispatch} />
-                })}
-            </div>
-        </div>
+        <>
+            {user.result.account !== 'guest' ? (
+                <div className="container">
+                    <h1 className="favorites-title">Favorite Movies</h1>
+                    <div className="favorites-list">
+                        {favorites.map(favorite => {
+                            return <Favorite key={favorite.id} favorite={favorite} dispatch={favoritesDispatch} />
+                        })}
+                    </div>
+                </div>
+            ) : <div className="container">
+                    <div className="settings-content">
+                        <h2>Viewing favorites is unavailable to guest accounts</h2>
+                    </div>
+                </div>}
+        </>
     )
 }
 

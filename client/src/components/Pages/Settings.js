@@ -42,7 +42,7 @@ export const Settings = () => {
     return (
         <div className="container">
             <div className="settings-content">
-                {user ? (
+                {user.result.account === 'user' ? (
                     <>
                         <h2>User Settings</h2>
                         <form className="settings-form" onSubmit={handleSubmit}>
@@ -65,7 +65,7 @@ export const Settings = () => {
                             <button type="submit">Submit</button>
                         </form>
                     </>
-                ) : <h2>Must be logged in to access settings</h2>
+                ) : <h2>User settings are unavailable to guest accounts</h2>
                 }
             </div>
         </div>
