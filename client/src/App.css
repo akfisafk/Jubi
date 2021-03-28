@@ -161,7 +161,7 @@ button:focus {
     justify-content: center;
     position: absolute;
     top: 55%;
-    left: -10%;
+    left: -5%;
     background-color: rgb(246, 243, 243);
     z-index: 1000;
 }
@@ -443,7 +443,6 @@ input:checked + .slider:before {
 .flex {
     display: flex;
 }
-
 
 /* Responsiveness */
 @media only screen and (max-width: 1200px) {

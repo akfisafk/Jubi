@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import FormInput from '../FormInput';
-import { signin, signup } from '../../actions/auth';
+import { signin, signup, guestLogIn } from '../../actions/auth';
 import gsap from 'gsap';
 
 const initialState = { firstName: '', lastName: '', email: '', password: '' };
+const guestData = { name: 'Guest' };
 
 export const Home = () => {
     const isSignup = false;
@@ -39,6 +40,11 @@ export const Home = () => {
         setTimeout(trueLoading, 5000);
     }
 
+    const handleGuestLogin = (e) => {
+        e.preventDefault();
+        dispatch(guestLogIn(guestData, history));
+    }
+
     useEffect(() => {
         gsap.from('h1', { duration: 3, ease: 'power4.out', x: '-25%' })
         gsap.from('h1', { duration: 1.5, opacity: 0, ease: 'circ.out' })
@@ -61,7 +67,8 @@ export const Home = () => {
                             <button type="submit"><span>{loading ? 'Login' : <i
                                 className="fa fa-refresh fa-spin"
                             />}</span></button>
-                        </form>        
+                        </form>
+                        <button onClick={handleGuestLogin}>Login as Guest</button>
                     </div>
                 </div>
             </div>

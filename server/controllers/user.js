@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../models/user.js';
+import Guest from '../models/guest.js';
 import Favorite from '../models/favorites.js';
 
 import dotenv from 'dotenv';
@@ -20,13 +21,29 @@ export const signin = async (req, res) => {
 
         if (!isPasswordCorrect) return res.status(400).json({ message: "Invalid credentials" });
 
-        const token = jwt.sign({ email: user.email, id: user._id }, secret, { expiresIn: "1h" });
+        const token = jwt.sign({ email: user.email, id: user._id, account: result.account }, secret, { expiresIn: "1h" });
 
         res.status(200).json({ result: user, token });
     } catch (err) {
         res.status(500).json({ message: "Something went wrong" });
     }
 };
+
+export const guest = async (req, res) => {
+    const { name } = req.body;
+
+    try {
+        const result = await Guest.create({ name: name, account: 'guest' });
+
+        const token = jwt.sign({ id: result._id, account: result.account }, secret, { expiresIn: ".5h" });
+
+        res.status(201).json({ result, token });
+    } catch (error) {
+        res.status(500).json({ messsage: 'Something went wrong' });
+
+        console.log(error);
+    }
+}
 
 export const signup = async (req, res) => {
     const { email, password, name } = req.body;
@@ -38,9 +55,9 @@ export const signup = async (req, res) => {
 
         const hashedPassword = await bcrypt.hash(password, 12);
 
-        const result = await User.create({ email: email, password: hashedPassword, name: name });
+        const result = await User.create({ email: email, password: hashedPassword, name: name, account: 'user' });
 
-        const token = jwt.sign({ email: result.email, id: result._id }, secret, { expiresIn: "1h" });
+        const token = jwt.sign({ email: result.email, id: result._id, account: result.account }, secret, { expiresIn: "1h" });
 
         res.status(201).json({ result, token });
     } catch (error) {

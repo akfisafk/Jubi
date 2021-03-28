@@ -140,7 +140,9 @@ const FeaturedMovie = ({ movie }) => {
     }
 
     const handleFavorite = (boolean) => {
-        if (boolean === true) {
+        console.log(user.result.account);
+        if (user.result.account !== 'guest'){
+            if(boolean === true) {
             const formData = {
                 name: user.result.name,
                 id: user.result._id,
@@ -151,18 +153,19 @@ const FeaturedMovie = ({ movie }) => {
                 movie_id: movie.id
             }
             dispatch(favorited(formData, history));
-        } else {
-            // handle unfavoriting feature
-            const formData = {
-                name: user.result.name,
-                id: user.result._id,
-                original_title: movie.original_title,
-                poster_path: movie.poster_path,
-                overview: movie.overview,
-                genre_ids: movie.genre_ids,
-                movie_id: movie.id
+            } else {
+                // handle unfavoriting feature
+                const formData = {
+                    name: user.result.name,
+                    id: user.result._id,
+                    original_title: movie.original_title,
+                    poster_path: movie.poster_path,
+                    overview: movie.overview,
+                    genre_ids: movie.genre_ids,
+                    movie_id: movie.id
+                }
+                dispatch(favorited(formData, history));
             }
-            dispatch(favorited(formData, history));
         }
     }
 

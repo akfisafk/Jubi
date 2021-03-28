@@ -106,9 +106,6 @@ export const Navbar = () => {
                         <ul className="nav-list flex">
                             {user && (
                                 <>
-                                    {/* <form onSubmit={handleSearch}>
-                                        <SignupInput name="search" label="Search" type="search" handleChange={handleSearchChange} />
-                                    </form> */}
                                     <li className="users-name"
                                         onClick={handleHoverTrue}
                                         onMouseLeave={handleHoverFalse}>
@@ -145,7 +142,6 @@ export const Navbar = () => {
                                             </li>
                                         </ul>
                                     </div>
-                                    {/* <li className="logout"><a href="/" onClick={logout}>Log out</a></li> */}
                                 </>
                             )}
 

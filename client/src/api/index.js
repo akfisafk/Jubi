@@ -15,8 +15,4 @@ export const signUp = (formData) => API.post('/users/signup', formData);
 export const favorited = (data) => API.post('/users/favorited', data);
 export const nameChange = (fullFormData) => API.post('/users/namechange', fullFormData);
 export const passwordChange = (fullFormData) => API.post('/users/passwordchange', fullFormData);
-export const searchInput = async (searchData) => {
-    let response = await API.post('/apis/search', searchData)
-    console.log(response.data);
-    return response
-}
+export const guestLogIn = (formData) => API.post('/users/guest', formData);
