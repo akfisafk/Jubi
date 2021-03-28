@@ -19,11 +19,10 @@ app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 // CONNECT MONGOOSE ATLAS
 const MONGO_USER = process.env.MONGO_USER;
 const MONGO_PW = process.env.MONGO_PW
-const connect_url = process.env.CONNECTION_URL;
-// mongoose.connect(`mongodb+srv://${MONGO_USER}:${MONGO_PW}@cluster0.g4c9g.mongodb.net/Jubi?retryWrites=true&w=majority`, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
-//     .then(() => app.listen(PORT, () => console.log(`Server running on port: ${PORT}`)))
-//     .catch((error) => console.log(error.message))
-mongoose.connect('mongodb://localhost:27017/jubi', { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false });
+mongoose.connect(`mongodb+srv://${MONGO_USER}:${MONGO_PW}@cluster0.g4c9g.mongodb.net/Jubi?retryWrites=true&w=majority`, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
+    .then(() => app.listen(PORT, () => console.log(`Server running on port: ${PORT}`)))
+    .catch((error) => console.log(error.message))
+// mongoose.connect('mongodb://localhost:27017/jubi', { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false });
 mongoose.set('useFindAndModify', false);
 
 const db = mongoose.connection;
@@ -47,6 +46,6 @@ app.use((err, req, res, next) => {
     // res.status(statusCode).render('error', { err });
 });
 
-app.listen(PORT, () => {
-    console.log('Listening on port' + PORT);
-});
+// app.listen(PORT, () => {
+//     console.log('Listening on port' + PORT);
+// });
