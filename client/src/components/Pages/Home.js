@@ -72,7 +72,6 @@ export const Home = () => {
                     </div>
                 </div>
                 <div className="guest">
-                    <p className="guest-label">Explore Jubi with limited features</p>
                     <button className="guest-btn" onClick={handleGuestLogin}>View as Guest</button>
                 </div>
             </div>
