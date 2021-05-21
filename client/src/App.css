@@ -479,6 +479,12 @@ input:checked + .slider:before {
 }
 
 /* Responsiveness */
+@media only screen and (max-height: 950px) {
+    .landing__content {
+        margin: 200px 0 0 0;
+    }
+}
+
 @media only screen and (max-width: 1200px) {
     .container {
         width: 100%;
