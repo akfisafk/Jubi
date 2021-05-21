@@ -26,7 +26,6 @@ export const Favorites = () => {
 
     useEffect(() => {
         async function getFavorites() {
-            if (user.result.account !== 'guest') {
                 const response = await fetch(`https://akfisafk-jubi-backend.zeet.app/users/${user.result._id}/favorites`, {
                     method: "GET",
                     headers: {
@@ -41,14 +40,12 @@ export const Favorites = () => {
                 favoritesDispatch(
                     { type: 'add-favorite', payload: { favorites: await response } }
                 );
-            }
         }
         getFavorites();
     }, [user.result._id, user.result.account]);
 
     return (
         <>
-            {user.result.account !== 'guest' ? (
                 <div className="container">
                     <h1 className="favorites-title">Favorite Movies</h1>
                     <div className="favorites-list">
@@ -57,11 +54,6 @@ export const Favorites = () => {
                         })}
                     </div>
                 </div>
-            ) : <div className="container">
-                    <div className="settings-content">
-                        <h2>Viewing favorites is unavailable to guest accounts</h2>
-                    </div>
-                </div>}
         </>
     )
 }
